@@ -6,7 +6,7 @@
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
-    "test:unit": "jest  --watch --passWithNoTests --onlyChanged",
+    "test:unit": "jest",
     "test:all": "jest --coverage"
   },
   "dependencies": {
