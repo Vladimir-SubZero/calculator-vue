@@ -27,10 +27,11 @@
     <Button v-for="number in ['1', '2', '3']" :key="number" @click="addDigit(number)">
       {{ number }}
     </Button>
-    <Button class="col-span-2"  @click="addOperator('+')">+</Button>
+    <Button class="col-span-2" variant="green" @click="addOperator('hypo')">hypo</Button>
 
-    <Button class="col-span-2" @click="addDigit('0')">0</Button>
+    <Button  @click="addDigit('0')">0</Button>
     <Button @click="addDigit('.')">.</Button>
+    <Button @click="addOperator('+')">+</Button>
     <Button class="col-span-2" variant="green" @click="calculateResult">=</Button>
   </Grid>
 </template>

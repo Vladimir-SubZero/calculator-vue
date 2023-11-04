@@ -6,6 +6,7 @@ export function useCalculate() {
   let degree = ref(false)
   let alfa = ref(false)
   let betta = ref(false)
+  let hypo = ref(false)
   let error = ref(false);
   let clearOnNextDigit = ref(false);
 
@@ -50,6 +51,7 @@ export function useCalculate() {
     if(operator === '^') degree.value = true
     if(operator === 'à') alfa.value = true
     if(operator === 'ß') betta.value = true
+    if(operator === 'hypo') hypo.value = true
     clearOnNextDigit.value = false;
     memory.value += `${operator}`;
   }
@@ -73,6 +75,7 @@ export function useCalculate() {
         degree.value = false
         alfa.value = false
         betta.value = false
+        hypo.value = false
         return
       }
     }
@@ -96,6 +99,7 @@ export function useCalculate() {
         degree.value = false
         alfa.value = false
         betta.value = false
+        hypo.value = false
         return
       }
     }
@@ -109,7 +113,7 @@ export function useCalculate() {
         const degs = radToDeg(atan)
         
         memory.value = String(degs);
-        
+
       } catch (_) {
         error.value = true;
         memory.value = "";
@@ -118,10 +122,33 @@ export function useCalculate() {
         degree.value = false
         alfa.value = false
         betta.value = false
+        hypo.value = false
         return
       }
     }
-    if (!degree.value && !alfa.value && !betta.value) {
+    if (hypo.value) {
+      try {
+        const mathExpression = memory.value.replace(/\b0*((\d+\.\d+|\d+))\b/g, "$1");
+        
+        const numbers = mathExpression.split('hypo')
+
+        const result = Math.sqrt(Math.pow(Number(numbers[0]), 2) + Math.pow(Number(numbers[1]), 2))
+        
+        memory.value = String(result);
+
+      } catch (_) {
+        error.value = true;
+        memory.value = "";
+      } finally {
+        clearOnNextDigit.value = true;
+        degree.value = false
+        alfa.value = false
+        betta.value = false
+        hypo.value = false
+        return
+      }
+    }
+    if (!degree.value && !alfa.value && !betta.value && !hypo.value) {
       try {
       const mathExpression = memory.value.replace(/\b0*((\d+\.\d+|\d+))\b/g, "$1"); // remove octal numeric
   
@@ -137,6 +164,7 @@ export function useCalculate() {
     degree.value = false
     alfa.value = false
     betta.value = false
+    hypo.value = false
     
   }
 
