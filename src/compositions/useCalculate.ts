@@ -109,8 +109,6 @@ export function useCalculate() {
         const degs = radToDeg(atan)
         
         memory.value = String(degs);
-       
-      
         
       } catch (_) {
         error.value = true;
