@@ -80,7 +80,6 @@ export function useCalculate() {
     if (alfa.value) {
       try {
         const mathExpression = memory.value.replace(/\b0*((\d+\.\d+|\d+))\b/g, "$1"); 
-        console.log('alfa', mathExpression);
         
         const numbers = mathExpression.split('à')
                 
@@ -103,10 +102,9 @@ export function useCalculate() {
     if (betta.value) {
       try {
         const mathExpression = memory.value.replace(/\b0*((\d+\.\d+|\d+))\b/g, "$1");
-        console.log('betta', mathExpression);
         
         const numbers = mathExpression.split('ß')
-        console.log('numbers', numbers);
+
         const atan = Math.atan(Number(numbers[1]) / Number(numbers[0]))
         const degs = radToDeg(atan)
         
@@ -128,8 +126,7 @@ export function useCalculate() {
     if (!degree.value && !alfa.value && !betta.value) {
       try {
       const mathExpression = memory.value.replace(/\b0*((\d+\.\d+|\d+))\b/g, "$1"); // remove octal numeric
-      console.log('usieal', mathExpression);
-      
+  
       memory.value = `${eval(mathExpression)}`;
     } catch (_) {
       error.value = true;
