@@ -92,7 +92,6 @@ describe("Calculator", () => {
     await addToMemory(wrapper, "5");
 
     for (const operator of OPERATORS) {
-      console.log('operator!1~', operator);
       const buttonOperator = buttons.find((button) => button.text() === operator);
       await buttonOperator?.trigger("click");
 

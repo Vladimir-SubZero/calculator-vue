@@ -46,7 +46,6 @@ export function useCalculate() {
 
     if (!memory.value && operator !== "-") return;
     if (lastCharIsOperator(memory.value)) eraseLast();
-    console.log('operator', operator);
     
     if(operator === '^') degree.value = true
     if(operator === 'à') alfa.value = true
@@ -64,8 +63,7 @@ export function useCalculate() {
     }
     if (degree.value) {
       try {
-        const mathExpression = memory.value.replace(/\b0*((\d+\.\d+|\d+))\b/g, "$1"); 
-        const numbers = mathExpression.split('^');       
+        const numbers = memory.value.split('^');       
         memory.value = String(Math.pow(Number(numbers[0]), Number(numbers[1])));
       } catch (_) {
         error.value = true;
@@ -81,10 +79,8 @@ export function useCalculate() {
     }
     
     if (alfa.value) {
-      try {
-        const mathExpression = memory.value.replace(/\b0*((\d+\.\d+|\d+))\b/g, "$1"); 
-        
-        const numbers = mathExpression.split('à')
+      try {    
+        const numbers = memory.value.split('à')
                 
         const atan = Math.atan(Number(numbers[0]) / Number(numbers[1]))
         const degs = radToDeg(atan)
@@ -105,9 +101,7 @@ export function useCalculate() {
     }
     if (betta.value) {
       try {
-        const mathExpression = memory.value.replace(/\b0*((\d+\.\d+|\d+))\b/g, "$1");
-        
-        const numbers = mathExpression.split('ß')
+        const numbers = memory.value.split('ß')
 
         const atan = Math.atan(Number(numbers[1]) / Number(numbers[0]))
         const degs = radToDeg(atan)
@@ -128,9 +122,8 @@ export function useCalculate() {
     }
     if (hypo.value) {
       try {
-        const mathExpression = memory.value.replace(/\b0*((\d+\.\d+|\d+))\b/g, "$1");
-        
-        const numbers = mathExpression.split('hypo')
+      
+        const numbers = memory.value.split('hypo')
 
         const result = Math.sqrt(Math.pow(Number(numbers[0]), 2) + Math.pow(Number(numbers[1]), 2))
         
@@ -150,21 +143,14 @@ export function useCalculate() {
     }
     if (!degree.value && !alfa.value && !betta.value && !hypo.value) {
       try {
-      const mathExpression = memory.value.replace(/\b0*((\d+\.\d+|\d+))\b/g, "$1"); // remove octal numeric
-  
-      memory.value = `${eval(mathExpression)}`;
-    } catch (_) {
-      error.value = true;
-      memory.value = "";
-    } finally {
-      clearOnNextDigit.value = true;
+        memory.value = `${eval(memory.value)}`;
+      } catch (_) {
+        error.value = true;
+        memory.value = "";
+      } finally {
+        clearOnNextDigit.value = true;
+      }
     }
-    }
-
-    degree.value = false
-    alfa.value = false
-    betta.value = false
-    hypo.value = false
     
   }
 
