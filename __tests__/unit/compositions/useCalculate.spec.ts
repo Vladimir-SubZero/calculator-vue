@@ -70,7 +70,7 @@ describe("useCalculate", () => {
 
   it("should throws a error when calls addOperator passing a non operator", () => {
     const { addOperator } = useCalculate();
-    expect(() => addOperator("a")).toThrowError();
+    expect(() => addOperator("c")).toThrowError();
     expect(() => addOperator("5")).toThrowError();
     expect(() => addOperator(" ")).toThrowError();
     expect(() => addOperator(".")).toThrowError();
@@ -95,9 +95,14 @@ describe("useCalculate", () => {
     expect(memory.value).toEqual("5");
 
     addOperator("*");
+    addDigit("2");
+    calculateResult();
+    expect(memory.value).toEqual("10");
+
+    addOperator("^");
     addDigit("3");
     calculateResult();
-    expect(memory.value).toEqual("15");
+    expect(memory.value).toEqual("1000");
   });
 
   it("should calculate valid math expressions with multiples operators", () => {

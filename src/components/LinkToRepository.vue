@@ -1,7 +1,7 @@
 <template>
   <a
     ref="linkRef"
-    href="https://github.com/Vladimir-SubZero/calculator"
+    href="https://github.com/Vladimir-SubZero/Calculator-vue3"
     target="_blank"
     title="Go to the repository"
     class="absolute w-6 -top-9 left-2 transition-all hover:text-white"

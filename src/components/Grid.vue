@@ -1,5 +1,5 @@
 <template>
-  <div :class="`grid grid-rows-${rows} grid-cols-${cols} gap-${gap}`">
+  <div :class="`w-2/6 h-64 grid grid-rows-${rows} grid-cols-${cols} gap-${gap}`">
     <slot></slot>
   </div>
 </template>

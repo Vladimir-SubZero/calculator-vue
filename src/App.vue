@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full h-full min-h-screen bg-gray-800 text-gray-200 flex justify-center items-center font-mono text-2xl sm:text-3xl"
+    class="w-full h-full min-h-screen text-gray-200 flex justify-center items-center font-mono text-2xl sm:text-3xl"
   >
     <Calculator />
   </div>
